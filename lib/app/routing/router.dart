@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:weatherworkshop/counter/view/home.dart';
+import 'package:weatherworkshop/weather/presentation/weather_screen.dart';
 
 part 'router.gr.dart';
 
@@ -8,7 +8,7 @@ part 'router.gr.dart';
   replaceInRouteName: 'Screen,Route',
   routes: <AutoRoute>[
     AutoRoute<void>(
-      page: HomeScreen,
+      page: WeatherScreen,
       initial: true,
     )
   ],
