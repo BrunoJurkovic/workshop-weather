@@ -17,10 +17,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
-    HomeRoute.name: (routeData) {
+    WeatherRoute.name: (routeData) {
       return MaterialPageX<void>(
         routeData: routeData,
-        child: const HomeScreen(),
+        child: const WeatherScreen(),
       );
     }
   };
@@ -28,20 +28,20 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(
-          HomeRoute.name,
+          WeatherRoute.name,
           path: '/',
         )
       ];
 }
 
 /// generated route for
-/// [HomeScreen]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute()
+/// [WeatherScreen]
+class WeatherRoute extends PageRouteInfo<void> {
+  const WeatherRoute()
       : super(
-          HomeRoute.name,
+          WeatherRoute.name,
           path: '/',
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'WeatherRoute';
 }
