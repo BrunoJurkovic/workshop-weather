@@ -16,6 +16,7 @@ class WeaterDio {
   WeaterDio();
   Dio get dio {
     final _dio = Dio();
+    //Maybe remove
     // _dio.options.baseUrl = sl<EnvironmentStorage>().getEnvironment()
     //     ? 'https://moon-app-backend-development.herokuapp.com/api/'
     //     : 'https://moon-app-backend-sandbox.herokuapp.com/api/';
