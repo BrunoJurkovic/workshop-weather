@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rive/rive.dart';
 import 'package:weatherworkshop/widgets/search_field.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -93,16 +94,21 @@ class _WeatherScreenState extends State<WeatherScreen> {
   }
 
 //Builder metoda
-  Container buildBackground() {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: (hour > 8 && hour < 17)
-              ? const AssetImage('assets/light.jpg')
-              : const AssetImage('assets/dark.jpg'),
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
+  Widget buildBackground() {
+    return (hour > 8 && hour < 17)
+        ? Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: (hour > 8 && hour < 17)
+                    ? const AssetImage('assets/light.jpg')
+                    : const AssetImage('assets/dark.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
+        : const RiveAnimation.asset(
+            'assets/1690-3340-starry-starry-night.riv',
+            fit: BoxFit.cover,
+          );
   }
 }
