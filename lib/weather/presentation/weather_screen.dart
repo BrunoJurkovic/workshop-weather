@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:rive/rive.dart';
 import 'package:weatherworkshop/widgets/search_field.dart';
 
 class WeatherScreen extends StatefulWidget {
@@ -24,8 +25,35 @@ class _WeatherScreenState extends State<WeatherScreen> {
         body: Stack(
           children: [
             buildBackground(),
+            Padding(
+              padding: EdgeInsets.only(top: 100.h),
+              child: Row(
+                children: [
+                  SearchField(
+                    name: 'weatherSearch',
+                    width: 540.w,
+                    leftPadding: 90.w,
+                    hintText: 'Search for a city...',
+                    outlineColor: (hour > 8 && hour < 17)
+                        ? Colors.white
+                        : Colors.amberAccent,
+                  ),
+                  SizedBox(
+                    width: 25.w,
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Icon(
+                      Icons.search_outlined,
+                      size: 90.r,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Positioned(
-              top: 100.h,
+              top: 200.h,
               left: 25.h,
               child: Column(
                 children: [
@@ -59,30 +87,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   SizedBox(
                     height: 620.h,
                   ),
-                  Row(
-                    children: [
-                      SearchField(
-                        name: 'weatherSearch',
-                        width: 540.w,
-                        leftPadding: 30.w,
-                        hintText: 'Search for a city...',
-                        outlineColor: (hour > 8 && hour < 17)
-                            ? Colors.cyanAccent
-                            : Colors.amberAccent,
-                      ),
-                      SizedBox(
-                        width: 25.w,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Icon(
-                          Icons.search_outlined,
-                          size: 90.r,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
                 ],
               ),
             ),
@@ -93,16 +97,21 @@ class _WeatherScreenState extends State<WeatherScreen> {
   }
 
 //Builder metoda
-  Container buildBackground() {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: (hour > 8 && hour < 17)
-              ? const AssetImage('assets/light.jpg')
-              : const AssetImage('assets/dark.jpg'),
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
+  Widget buildBackground() {
+    return (hour > 8 && hour < 17)
+        ? Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: (hour > 8 && hour < 17)
+                    ? const AssetImage('assets/light.jpg')
+                    : const AssetImage('assets/dark.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
+        : const RiveAnimation.asset(
+            'assets/1690-3340-starry-starry-night.riv',
+            fit: BoxFit.cover,
+          );
   }
 }
