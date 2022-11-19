@@ -9,25 +9,18 @@ import 'package:loggy/loggy.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 // 🌎 Project imports:
-import '../helper/exceptions.dart';
-import '../services/service_locator.dart';
+import 'package:weatherworkshop/app/helper/exceptions.dart';
 
-class WeaterDio {
-  WeaterDio();
+class WeatherDio {
+  WeatherDio();
   Dio get dio {
-    final _dio = Dio();
-    //Maybe remove
-    // _dio.options.baseUrl = sl<EnvironmentStorage>().getEnvironment()
-    //     ? 'https://moon-app-backend-development.herokuapp.com/api/'
-    //     : 'https://moon-app-backend-sandbox.herokuapp.com/api/';
-    _dio.options.connectTimeout = 7000; // 7s
-    _dio.options.receiveTimeout = 10000;
-    _dio.interceptors.add(
+    final dio = Dio();
+    dio.options.baseUrl = 'https://api.openweathermap.org/';
+    dio.options.connectTimeout = 7000; // 7s
+    dio.options.receiveTimeout = 10000;
+    dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options, handler) async {
-          // options.headers.addAll(<String, dynamic>{
-          //   'Authorization': 'Bearer ${await _tokenStorage.getToken()}',
-          // });
           return handler.next(options);
         },
         onResponse: (Response response, handler) {
@@ -143,7 +136,7 @@ class WeaterDio {
         },
       ),
     );
-    _dio.interceptors.add(
+    dio.interceptors.add(
       PrettyDioLogger(
         requestHeader: true,
         responseHeader: true,
@@ -152,6 +145,6 @@ class WeaterDio {
         compact: false,
       ),
     );
-    return _dio;
+    return dio;
   }
 }
