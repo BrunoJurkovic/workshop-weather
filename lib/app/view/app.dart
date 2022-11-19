@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:weatherworkshop/l10n/l10n.dart';
 import 'package:weatherworkshop/weather/presentation/weather_screen.dart';
 
 class App extends StatelessWidget {
@@ -18,8 +17,6 @@ class App extends StatelessWidget {
               accentColor: const Color(0xFF13B9FF),
             ),
           ),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
           home: const WeatherScreen(),
         );
       },
