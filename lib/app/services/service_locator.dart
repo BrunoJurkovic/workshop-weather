@@ -15,10 +15,9 @@ Future<void> initDependencies() async {
   }
 
   isDependencyInitialized = true;
-  sl.registerLazySingleton(
-    WeatherDio.new,
-  );
+  sl.registerLazySingleton(() => WeatherDio().dio);
   _initRouting();
+  initWeather();
 }
 
 void _initRouting() {

@@ -14,8 +14,8 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       : _repository = repository,
         super(const WeatherState.initial()) {
     on<WeatherEvent>(
-      (event, emit) {
-        event.when(
+      (event, emit) async {
+        await event.when(
           fetch: (city) async {
             try {
               /// Emitting loading state to the bloc.
@@ -29,7 +29,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
                 geocode.lat,
                 geocode.lon,
               );
-              emit(WeatherState.loaded(weather));
+              emit(WeatherState.loaded(weather, city));
             } catch (e) {
               emit(const WeatherState.error());
             }
