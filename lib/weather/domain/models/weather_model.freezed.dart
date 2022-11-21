@@ -21,6 +21,7 @@ WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$WeatherModel {
   num get temp => throw _privateConstructorUsedError;
+  num? get condition => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $WeatherModelCopyWith<$Res> {
           WeatherModel value, $Res Function(WeatherModel) then) =
       _$WeatherModelCopyWithImpl<$Res, WeatherModel>;
   @useResult
-  $Res call({num temp});
+  $Res call({num temp, num? condition});
 }
 
 /// @nodoc
@@ -51,12 +52,17 @@ class _$WeatherModelCopyWithImpl<$Res, $Val extends WeatherModel>
   @override
   $Res call({
     Object? temp = null,
+    Object? condition = freezed,
   }) {
     return _then(_value.copyWith(
       temp: null == temp
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
               as num,
+      condition: freezed == condition
+          ? _value.condition
+          : condition // ignore: cast_nullable_to_non_nullable
+              as num?,
     ) as $Val);
   }
 }
@@ -69,7 +75,7 @@ abstract class _$$_WeatherModelCopyWith<$Res>
       __$$_WeatherModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({num temp});
+  $Res call({num temp, num? condition});
 }
 
 /// @nodoc
@@ -84,12 +90,17 @@ class __$$_WeatherModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? temp = null,
+    Object? condition = freezed,
   }) {
     return _then(_$_WeatherModel(
       temp: null == temp
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
               as num,
+      condition: freezed == condition
+          ? _value.condition
+          : condition // ignore: cast_nullable_to_non_nullable
+              as num?,
     ));
   }
 }
@@ -97,17 +108,19 @@ class __$$_WeatherModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_WeatherModel implements _WeatherModel {
-  const _$_WeatherModel({required this.temp});
+  const _$_WeatherModel({required this.temp, this.condition});
 
   factory _$_WeatherModel.fromJson(Map<String, dynamic> json) =>
       _$$_WeatherModelFromJson(json);
 
   @override
   final num temp;
+  @override
+  final num? condition;
 
   @override
   String toString() {
-    return 'WeatherModel(temp: $temp)';
+    return 'WeatherModel(temp: $temp, condition: $condition)';
   }
 
   @override
@@ -115,12 +128,14 @@ class _$_WeatherModel implements _WeatherModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WeatherModel &&
-            (identical(other.temp, temp) || other.temp == temp));
+            (identical(other.temp, temp) || other.temp == temp) &&
+            (identical(other.condition, condition) ||
+                other.condition == condition));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, temp);
+  int get hashCode => Object.hash(runtimeType, temp, condition);
 
   @JsonKey(ignore: true)
   @override
@@ -137,13 +152,16 @@ class _$_WeatherModel implements _WeatherModel {
 }
 
 abstract class _WeatherModel implements WeatherModel {
-  const factory _WeatherModel({required final num temp}) = _$_WeatherModel;
+  const factory _WeatherModel({required final num temp, final num? condition}) =
+      _$_WeatherModel;
 
   factory _WeatherModel.fromJson(Map<String, dynamic> json) =
       _$_WeatherModel.fromJson;
 
   @override
   num get temp;
+  @override
+  num? get condition;
   @override
   @JsonKey(ignore: true)
   _$$_WeatherModelCopyWith<_$_WeatherModel> get copyWith =>

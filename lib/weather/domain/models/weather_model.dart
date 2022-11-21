@@ -7,6 +7,7 @@ part 'weather_model.freezed.dart';
 class WeatherModel with _$WeatherModel {
   const factory WeatherModel({
     required num temp,
+    num? condition,
   }) = _WeatherModel;
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) =>

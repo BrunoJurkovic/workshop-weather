@@ -1,4 +1,4 @@
-// ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: lines_longer_than_80_chars, avoid_dynamic_calls
 
 import 'dart:convert';
 
@@ -65,9 +65,11 @@ class WeatherRepositoryImpl implements WeatherRepository {
       /// Getting the `main` key from the `json` map.
       final weatherData = json['main'] as Map<String, dynamic>;
 
+      final currentCondition = json['weather'][0]['id'] as int;
+
       /// Converting the `weatherData` map into a `WeatherModel` object.
       final result = WeatherModel.fromJson(weatherData);
-      return result;
+      return result.copyWith(condition: currentCondition);
     } catch (e) {
       logError(e);
       rethrow;
